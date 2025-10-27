@@ -1,5 +1,5 @@
 # Sign-Language
-melakukan pelatihan data gambar menggunakan metode randomforest dari bahasa isyarat menjadi text dan bisa bicara
+melakukan pelatihan data gambar menggunakan metode randomforest dari bahasa isyarat menjadi text
 
 persiapan:
 1. cek versi python dengan mengetik python --version di cmd
