@@ -45,7 +45,7 @@ while True:
                 mp_hands.HAND_CONNECTIONS,
                 mp_drawing_styles.get_default_hand_landmarks_style(),
                 mp_drawing_styles.get_default_hand_connections_style()
-            )                                #gambar titik kerangka tangan di frame buat visualisasi
+            )                                          #gambar titik kerangka tangan di frame buat visualisasi
 
         x_ = [lm.x for lm in hand_landmarks.landmark]  #list bantu buat nampung koordinat x tiap titik kerangka tangan
         y_ = [lm.y for lm in hand_landmarks.landmark]  #list bantu buat nampung koordinat y tiap titik kerangka tangan
