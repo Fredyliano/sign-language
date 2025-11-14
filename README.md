@@ -1,5 +1,5 @@
 # Sign-Language
-melakukan pelatihan data gambar menggunakan metode randomforest dari bahasa isyarat menjadi text
+melakukan pelatihan data gambar menggunakan metode SVM dari bahasa isyarat menjadi text
 
 persiapan:
 1. cek versi python dengan mengetik python --version di cmd

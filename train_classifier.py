@@ -2,8 +2,8 @@ import pickle                        #buat nyimpen data dalam bentuk biner kyk 0
 import numpy as np                   #buat ngelola data dalam bentuk array atau numerik
 import matplotlib.pyplot as plt      #buat visualisasi gambar
 import seaborn as sns                #buat grafik visualisasi gambar
-
-from sklearn.ensemble import RandomForestClassifier    #klasifikiasi berbasis ensemble tree dari metode random forest  
+from sklearn.svm import SVC         #buat metode algoritma SVM
+  
 from sklearn.model_selection import train_test_split   #buat ngebagi data jadi train dan test
 from sklearn.metrics import accuracy_score, confusion_matrix, classification_report #buat evaluasi performa model
 
@@ -17,7 +17,7 @@ labels = np.asarray(data_dict['labels'])              #array kelas
 x_train, x_test, y_train, y_test = train_test_split(data, labels, test_size=0.2, shuffle=True, stratify=labels)                                      #data test diambil 20%, dan training berarti 80%, data diacak, proporsi tiap kelas di train dan test bakal tetep seimbang
 
 # === Training model ===#
-model = RandomForestClassifier()                      #pake metode algoritma randomforest berbasis ensemble decision tree
+model = SVC(kernel='rbf', probability=True)           #pake metode algoritma SVM dengan kernel RBF
 model.fit(x_train, y_train)                           #latih berdasarkan data training
 
 # === evalusai ===#
@@ -29,7 +29,7 @@ print("\n=== Classification Report ===")
 print(classification_report(y_test, y_predict))                    #nampilin klasifikasinya kyk accuracy dll
 
 # === simpen model ===#
-with open('model2.p', 'wb') as f:
+with open('model.p', 'wb') as f:
     pickle.dump({'model': model}, f)                           #buat nyimpen data yang udah di latih
 
 # === Visualization Confusion Matrix ===#
