@@ -17,7 +17,7 @@ DATA_DIR = './data'                             #direktori tempat nyimpen data g
 data = []                                       #list buat nampung data fitur hasil ekstrak
 labels = []                                     #list buat nampung label tiap kelas gambar
 for dir_ in os.listdir(DATA_DIR):               #ngulang buat tiap subfolder di direktori data, misal subfolder 0,1,2,3 dst
-    for img_path in os.listdir(os.path.join(DATA_DIR, dir_)): #[1:]  #ngulang buat tiap gambar di subfolder kelas yg sesuai
+    for img_path in os.listdir(os.path.join(DATA_DIR, dir_)): #[:1]  #ngulang buat tiap gambar di subfolder kelas yg sesuai
         data_aux = []                #list bantu buat nampung data fitur sementara buat tiap gambar
 
         x_ = []                      #list bantu buat nampung koordinat x tiap titik kerangka tangan
@@ -43,16 +43,16 @@ for dir_ in os.listdir(DATA_DIR):               #ngulang buat tiap subfolder di 
                     data_aux.append(y - min(y_))                #normalisasi koordinat y dan simpan ke data fitur
 
 #=== visualisasi mediapipe hand gesture ===#                
-                # mp_drawing.draw_landmarks(  
-                #     img_rgb,    
-                #     hand_landmarks,
-                #     mp_hands.HAND_CONNECTIONS,
-                #     mp_drawing_styles.get_default_hand_landmarks_style(),
-                #     mp_drawing_styles.get_default_hand_connections_style()  
-                # )   #gambar titik kerangka tangan di gambar RGB buat visualisasi
+#                 mp_drawing.draw_landmarks(  
+#                     img_rgb,    
+#                     hand_landmarks,
+#                     mp_hands.HAND_CONNECTIONS,
+#                     mp_drawing_styles.get_default_hand_landmarks_style(),
+#                     mp_drawing_styles.get_default_hand_connections_style()  
+#                 )   #gambar titik kerangka tangan di gambar RGB buat visualisasi
         
-            data.append(data_aux)   #simpan data fitur gambar ke list data
-            labels.append(dir_)     #simpan label kelas gambar ke list labels
+#             data.append(data_aux)   #simpan data fitur gambar ke list data
+#             labels.append(dir_)     #simpan label kelas gambar ke list labels
 
 #         plt.figure(figsize=(5, 5))    #bikin figure buat nampilin gambar
 #         plt.imshow(img_rgb)           #tampilin gambar RGB dengan titik kerangka tangan

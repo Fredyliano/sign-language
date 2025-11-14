@@ -14,7 +14,7 @@ data = np.asarray(data_dict['data'])                  #array fitur koordinat tan
 labels = np.asarray(data_dict['labels'])              #array kelas
 
 # === Bagi dataset ===#
-x_train, x_test, y_train, y_test = train_test_split(data, labels, test_size=0.2, shuffle=True, stratify=labels)                                      #data test diambil 20%, dan training berarti 80%, data diacak, proporsi tiap kelas di train dan test bakal tetep seimbang
+x_train, x_test, y_train, y_test = train_test_split(data, labels, test_size=0.2, shuffle=True, stratify=labels)   #data test diambil 20%, dan training berarti 80%, data diacak, proporsi tiap kelas di train dan test bakal tetep seimbang
 
 # === Training model ===#
 model = SVC(kernel='rbf', probability=True)           #pake metode algoritma SVM dengan kernel RBF
