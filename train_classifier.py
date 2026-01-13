@@ -8,7 +8,7 @@ from sklearn.model_selection import train_test_split   #buat ngebagi data jadi t
 from sklearn.metrics import accuracy_score, confusion_matrix, classification_report #buat evaluasi performa model
 
 #=== Panggil data ===#
-data_dict = pickle.load(open('./data.pickle', 'rb'))  #panggil data yang mau di training
+data_dict = pickle.load(open('./data_baru.pickle', 'rb'))  #panggil data yang mau di training
 
 data = np.asarray(data_dict['data'])                  #array fitur koordinat tangan
 labels = np.asarray(data_dict['labels'])              #array kelas
@@ -17,7 +17,7 @@ labels = np.asarray(data_dict['labels'])              #array kelas
 x_train, x_test, y_train, y_test = train_test_split(data, labels, test_size=0.2, shuffle=True, stratify=labels)   #data test diambil 20%, dan training berarti 80%, data diacak, proporsi tiap kelas di train dan test bakal tetep seimbang
 
 # === Training model ===#
-model = SVC(kernel='rbf', probability=True)           #pake metode algoritma SVM dengan kernel RBF
+model = SVC(kernel='rbf', probability=True)           #pake metode algoritma SVM
 model.fit(x_train, y_train)                           #latih berdasarkan data training
 
 # === evalusai ===#
@@ -29,7 +29,7 @@ print("\n=== Classification Report ===")
 print(classification_report(y_test, y_predict))                    #nampilin klasifikasinya kyk accuracy dll
 
 # === simpen model ===#
-with open('model.p', 'wb') as f:
+with open('modelSVM.p', 'wb') as f:
     pickle.dump({'model': model}, f)                           #buat nyimpen data yang udah di latih
 
 # === Visualization Confusion Matrix ===#

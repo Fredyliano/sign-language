@@ -11,13 +11,13 @@ mp_drawing_styles = mp.solutions.drawing_styles #buat gambar 21 titik kerangka t
 
 hands = mp_hands.Hands(static_image_mode=True, min_detection_confidence=0.3)    #buat inisialisasi deteksi tangan dalam mode gambar statis
 
-DATA_DIR = './data'                             #direktori tempat nyimpen data gambar
+DATA_DIR = './ASL_Dataset/Train'                             #direktori tempat nyimpen data gambar
 
 #=== pembuatan dataset yang bakal dilatih ===#
 data = []                                       #list buat nampung data fitur hasil ekstrak
 labels = []                                     #list buat nampung label tiap kelas gambar
 for dir_ in os.listdir(DATA_DIR):               #ngulang buat tiap subfolder di direktori data, misal subfolder 0,1,2,3 dst
-    for img_path in os.listdir(os.path.join(DATA_DIR, dir_)): #[:1]  #ngulang buat tiap gambar di subfolder kelas yg sesuai
+    for img_path in os.listdir(os.path.join(DATA_DIR, dir_))[:1]: #[:1]  #ngulang buat tiap gambar di subfolder kelas yg sesuai
         data_aux = []                #list bantu buat nampung data fitur sementara buat tiap gambar
 
         x_ = []                      #list bantu buat nampung koordinat x tiap titik kerangka tangan
@@ -43,22 +43,22 @@ for dir_ in os.listdir(DATA_DIR):               #ngulang buat tiap subfolder di 
                     data_aux.append(y - min(y_))                #normalisasi koordinat y dan simpan ke data fitur
 
 #=== visualisasi mediapipe hand gesture ===#                
-#                 mp_drawing.draw_landmarks(  
-#                     img_rgb,    
-#                     hand_landmarks,
-#                     mp_hands.HAND_CONNECTIONS,
-#                     mp_drawing_styles.get_default_hand_landmarks_style(),
-#                     mp_drawing_styles.get_default_hand_connections_style()  
-#                 )   #gambar titik kerangka tangan di gambar RGB buat visualisasi
+                # mp_drawing.draw_landmarks(  
+                #     img_rgb,    
+                #     hand_landmarks,
+                #     mp_hands.HAND_CONNECTIONS,
+                #     mp_drawing_styles.get_default_hand_landmarks_style(),
+                #     mp_drawing_styles.get_default_hand_connections_style()  
+                # )   #gambar titik kerangka tangan di gambar RGB buat visualisasi
         
-#             data.append(data_aux)   #simpan data fitur gambar ke list data
-#             labels.append(dir_)     #simpan label kelas gambar ke list labels
+            data.append(data_aux)   #simpan data fitur gambar ke list data
+            labels.append(dir_)     #simpan label kelas gambar ke list labels
 
 #         plt.figure(figsize=(5, 5))    #bikin figure buat nampilin gambar
 #         plt.imshow(img_rgb)           #tampilin gambar RGB dengan titik kerangka tangan
 # plt.show()                            #tampilin semua gambar yang udh diproses
            
 #=== simpan file dataset yang bakal dilatih ===#
-f = open('data.pickle', 'wb')                       #buka file data.pickle buat nyimpen data fitur dan label
+f = open('data_baru.pickle', 'wb')                       #buka file data.pickle buat nyimpen data fitur dan label
 pickle.dump({'data': data, 'labels': labels}, f)    #simpan data fitur dan label dalam file data.pickle
 f.close()                                           #tutup file data.pickle
